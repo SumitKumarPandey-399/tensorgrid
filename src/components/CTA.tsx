@@ -9,17 +9,23 @@ type CTAProps = {
 
 export function CTA({ title, description, actionText, actionPath }: CTAProps) {
   return (
-    <section className="py-14 sm:py-16">
+    <section className="reveal-on-scroll py-14 sm:py-16">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl border border-cyan-400/25 bg-gradient-to-r from-slate-900 via-indigo-950/70 to-cyan-950/70 p-8 text-white shadow-glow sm:p-10">
-          <h2 className="text-2xl font-semibold sm:text-3xl">{title}</h2>
-          <p className="mt-3 max-w-2xl text-slate-200">{description}</p>
-          <Link
-            className="mt-6 inline-flex rounded-xl bg-gradient-to-r from-blue-500 via-cyan-400 to-indigo-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:opacity-90"
-            to={actionPath}
-          >
-            {actionText}
-          </Link>
+        <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-gradient-to-br from-sky-50 to-white px-6 py-9 shadow-md sm:p-12">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_20%_-8%,rgba(56,189,248,0.12),transparent_58%)]"
+          />
+          <div className="relative">
+            <h2 className="font-display text-2xl text-slate-900 sm:text-3xl">{title}</h2>
+            <p className="mt-3 max-w-2xl text-slate-600">{description}</p>
+            <Link
+              className="mt-7 inline-flex rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+              to={actionPath}
+            >
+              {actionText}
+            </Link>
+          </div>
         </div>
       </div>
     </section>

@@ -11,35 +11,65 @@ import { faqContent, homeContent, pageHeadings } from '../data/content'
 
 export default function Home() {
   useEffect(() => {
-    const elements = Array.from(document.querySelectorAll<HTMLElement>('.reveal-on-scroll'))
-    if (!elements.length) return
+    let observer: IntersectionObserver | null = null
+    let raf1 = 0
+    let raf2 = 0
+    let disposed = false
 
-    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
-      elements.forEach((el) => el.classList.add('is-visible'))
-      return
+    const setup = () => {
+      if (disposed) return
+      const elements = Array.from(document.querySelectorAll<HTMLElement>('.reveal-on-scroll'))
+      if (!elements.length) return
+
+      const showAll = () => elements.forEach((el) => el.classList.add('is-visible'))
+
+      if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+        showAll()
+        return
+      }
+
+      if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+        showAll()
+        return
+      }
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible')
+              observer?.unobserve(entry.target)
+            }
+          })
+        },
+        {
+          // Positive bottom margin enlarges the root so entries fire slightly before they enter view.
+          threshold: [0, 0.06, 0.12],
+          rootMargin: '0px 0px 20% 0px',
+        },
+      )
+
+      elements.forEach((el) => observer!.observe(el))
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible')
-            observer.unobserve(entry.target)
-          }
-        })
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
-    )
+    // After lazy route paint, ensure layout exists before querying nodes.
+    raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(setup)
+    })
 
-    // Avoid blank content if observer callback is delayed on some browsers.
-    const fallbackTimer = window.setTimeout(() => {
-      elements.forEach((el) => el.classList.add('is-visible'))
-    }, 900)
+    // Last resort only: avoid permanently hidden blocks if IO never fires (edge browsers).
+    const safetyTimer = window.setTimeout(() => {
+      document.querySelectorAll<HTMLElement>('.reveal-on-scroll:not(.is-visible)').forEach((el) => {
+        el.classList.add('is-visible')
+      })
+    }, 15000)
 
-    elements.forEach((el) => observer.observe(el))
     return () => {
-      window.clearTimeout(fallbackTimer)
-      observer.disconnect()
+      disposed = true
+      cancelAnimationFrame(raf1)
+      cancelAnimationFrame(raf2)
+      observer?.disconnect()
+      window.clearTimeout(safetyTimer)
     }
   }, [])
 

@@ -9,23 +9,34 @@ body,
 }
 
 body {
-  @apply m-0 bg-slate-950 text-slate-200 antialiased;
+  @apply m-0 bg-sky-50 font-sans text-slate-700 antialiased;
   background-image:
-    radial-gradient(circle at 20% 10%, rgba(59, 130, 246, 0.2), transparent 32%),
-    radial-gradient(circle at 85% 0%, rgba(34, 211, 238, 0.14), transparent 28%),
-    radial-gradient(circle at 50% 100%, rgba(99, 102, 241, 0.18), transparent 30%);
+    radial-gradient(ellipse 90% 60% at 50% -15%, rgba(186, 230, 253, 0.85), transparent 55%),
+    radial-gradient(ellipse 70% 45% at 100% 0%, rgba(224, 242, 254, 0.7), transparent 50%),
+    linear-gradient(180deg, #e8f4fc 0%, #f0f9ff 35%, #f8fafc 100%);
   background-attachment: fixed;
 }
 
 ::selection {
-  background: rgba(59, 130, 246, 0.35);
-  color: #f8fafc;
+  background: rgba(14, 165, 233, 0.28);
+  color: #0f172a;
 }
 
 .glass-panel {
-  @apply border border-slate-800/70 bg-slate-900/70 backdrop-blur-xl;
+  @apply border border-slate-200/90 bg-white/90 shadow-sm backdrop-blur-xl;
 }
 
 .gradient-text {
-  @apply bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-sky-700 via-blue-700 to-slate-800 bg-clip-text text-transparent;
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }

@@ -7,44 +7,48 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-20 border-b border-slate-800/80 bg-slate-950/85 backdrop-blur-xl">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <Link to="/" aria-label="TensorGrid home">
+    <header className="sticky top-0 z-20 border-b border-slate-200/90 bg-white/90 backdrop-blur-xl">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
+        <Link to="/" aria-label="TensorGrids home">
           <Logo />
         </Link>
         <button
           type="button"
-          className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 md:hidden"
+          className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 md:hidden"
           onClick={() => setIsOpen((value) => !value)}
           aria-label="Toggle menu"
         >
           {siteContent.labels.menu}
         </button>
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-8 md:flex">
           {siteContent.navLinks.map((link) => (
             <NavLink
               key={link.path}
               to={link.path}
               className={({ isActive }) =>
-                isActive
-                  ? 'text-sm font-semibold text-cyan-300'
-                  : 'text-sm text-slate-300 transition hover:text-white'
+                isActive ? 'text-sm font-semibold text-blue-700' : 'text-sm text-slate-600 transition hover:text-slate-900'
               }
             >
               {link.label}
             </NavLink>
           ))}
+          <Link
+            to={siteContent.navCta.path}
+            className="rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+          >
+            {siteContent.navCta.label}
+          </Link>
         </nav>
       </div>
       {isOpen && (
-        <nav className="glass-panel border-x-0 border-b-0 border-t border-slate-800 px-4 py-3 md:hidden">
+        <nav className="border-t border-slate-200 bg-white px-4 py-4 shadow-[0_8px_24px_-12px_rgba(15,23,42,0.15)] md:hidden">
           <ul className="space-y-3">
             {siteContent.navLinks.map((link) => (
               <li key={link.path}>
                 <NavLink
                   to={link.path}
                   className={({ isActive }) =>
-                    isActive ? 'text-sm font-semibold text-cyan-300' : 'text-sm text-slate-300'
+                    isActive ? 'text-sm font-semibold text-blue-700' : 'text-sm text-slate-600'
                   }
                   onClick={() => setIsOpen(false)}
                 >
@@ -52,6 +56,15 @@ export function Navbar() {
                 </NavLink>
               </li>
             ))}
+            <li className="pt-2">
+              <Link
+                to={siteContent.navCta.path}
+                onClick={() => setIsOpen(false)}
+                className="block rounded-full bg-blue-600 px-4 py-2.5 text-center text-sm font-semibold text-white"
+              >
+                {siteContent.navCta.label}
+              </Link>
+            </li>
           </ul>
         </nav>
       )}

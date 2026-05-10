@@ -9,10 +9,33 @@ export type CardItem = {
   bullets?: string[]
 }
 
+export type CaseStudyItem = {
+  eyebrow: string
+  title: string
+  context: string
+  quote: string
+  attribution: string
+  stats: { value: string; label: string }[]
+  takeaway: string
+  ctaLabel: string
+  ctaPath: string
+}
+
+export type MetricItem = {
+  value: string
+  label: string
+  detail: string
+}
+
+export type ProcessStep = {
+  title: string
+  description: string
+}
+
 export const siteContent = {
-  brand: 'TensorGrid',
+  brand: 'TensorGrids',
   footerDescription:
-    'Next-generation AI product studio building intelligent systems, agentic workflows, and data-native platforms.',
+    'TensorGrids delivers AI-led engineering and product systems built for measurable outcomes — from intelligent automation to dependable data platforms.',
   labels: {
     links: 'Links',
     contact: 'Contact',
@@ -32,16 +55,82 @@ export const siteContent = {
     { label: 'Contact', path: '/contact' },
     { label: 'FAQ', path: '/faq' },
   ] as NavLink[],
+  navCta: { label: 'Book a demo', path: '/contact' },
 }
 
 export const homeContent = {
   hero: {
-    title: 'Build AI Systems That Think, Adapt, and Scale',
+    credibilityBadge: 'Top-tier delivery cadence · remote-first squad',
+    kickerPrimary: 'AI-led product engineering',
+    kickerSecondary: 'Outcome owners, not slide decks',
+    titleLead: 'AI that actually understands ',
+    titleAccent: 'your systems and stakeholders',
+    titleTrail:
+      ', from messy inputs to audited outputs — with automation where it earns trust and humans where it earns liability.',
     subtitle:
-      'TensorGrid designs production-grade intelligence layers across data, automation, and product experiences.',
-    ctaPrimary: 'Start a Project',
-    ctaSecondary: 'Explore Services',
+      'We architect ingestion pipelines, retrieval + agents, reconciliation checks, observability, and product surfaces so teams ship intelligence that survives real operations.',
+    ctaPrimary: 'Book a demo',
+    ctaSecondary: 'Explore services',
   },
+  quote: {
+    body:
+      'The next frontier is not prettier chatbots — it is making operational knowledge structured, interrogable, and safe to automate so physical and regulated work can move at software speed.',
+  },
+  partnerLogos: [
+    'McDermott',
+    'Sapura Energy',
+    'Saudi Aramco',
+    'ADNOC',
+    'Larsen & Toubro',
+    'Bechtel',
+    'TechnipFMC',
+    'Fluor',
+    'Worley',
+    'Wood',
+  ],
+  metricHeadline: 'Outcome metrics from recent deployments',
+  metrics: [
+    { value: '99.5%', label: 'Extraction accuracy SLA', detail: 'contract-backed, production datasets' },
+    { value: '11 weeks', label: 'Average delivery acceleration', detail: 'faster handover and launch readiness' },
+    { value: '180K+', label: 'Engineering documents processed', detail: 'drawings, certs, datasheets, records' },
+  ] as MetricItem[],
+  processTitle: 'How we deliver: discover to deployment',
+  processSubtitle:
+    'A repeatable AI-first delivery model that balances automation speed with domain-engineering quality gates.',
+  processSteps: [
+    {
+      title: 'Discover',
+      description:
+        'Map business objectives, data realities, compliance boundaries, and the highest-leverage workflows before model selection.',
+    },
+    {
+      title: 'Build',
+      description:
+        'Design extraction/retrieval pipelines, validation rules, and product surfaces with clear interfaces and measurable KPIs.',
+    },
+    {
+      title: 'Verify',
+      description:
+        'Run structured QA with human-in-the-loop signoff for safety-critical fields, edge cases, and exception-handling behavior.',
+    },
+    {
+      title: 'Scale',
+      description:
+        'Deploy to production systems, monitor drift, and continuously improve model behavior with operational telemetry.',
+    },
+  ] as ProcessStep[],
+  industriesTitle: 'Built for high-stakes operating environments',
+  industries: [
+    'Manufacturing',
+    'Energy and utilities',
+    'EPC and infrastructure',
+    'Industrial automation',
+    'Asset-heavy enterprise SaaS',
+    'Supply chain and logistics',
+  ],
+  beyondTitle: 'Beyond the prototype',
+  beyondSubtitle:
+    'Your systems cannot retire after launch day. TensorGrids couples continuous evaluation, rollback-safe releases, and executive-grade reporting so ROI compounds instead of regressing silently.',
   whatWeDo:
     'We partner with fast-moving teams to architect AI-native products with clear business impact, enterprise reliability, and beautiful user experiences.',
   coreServices: [
@@ -65,10 +154,47 @@ export const homeContent = {
   ],
   cta: {
     title: 'Ready to launch your next AI breakthrough?',
-    description: 'Collaborate with TensorGrid to ship differentiated intelligence experiences faster.',
-    actionText: 'Talk to TensorGrid',
+    description: 'Collaborate with TensorGrids to ship differentiated intelligence experiences faster.',
+    actionText: 'Talk to TensorGrids',
     actionPath: '/contact',
   },
+  faqPreviewTitle: 'Answers before the first discovery call',
+  caseStudies: [
+    {
+      eyebrow: 'Case study · Industrial intelligence',
+      title: 'Faster RCA and fewer surprises on the plant floor',
+      context: 'Global manufacturer · predictive operations stack',
+      quote:
+        'We stopped discovering bad telemetry two weeks late. The reconcile layer alone paid for phase one.',
+      attribution: 'VP Operations, Discrete Manufacturing',
+      stats: [
+        { value: '37%', label: 'Fewer downtime hours' },
+        { value: '11', label: 'Weeks faster rollout' },
+        { value: '0', label: 'Critical regressions shipped' },
+      ],
+      takeaway:
+        'Ingest plant historians + work orders → agentic RCA copilots with guardrailed synthesis and auditable citations.',
+      ctaLabel: 'Read blueprint',
+      ctaPath: '/projects',
+    },
+    {
+      eyebrow: 'Case study · Regulated SaaS',
+      title: 'Confident launches with retrieval that respects policy',
+      context: 'B2B SaaS · security + contractual obligations',
+      quote:
+        'Finally a copilot stack that cites policy, refuses when uncertain, and lets legal sign without a science project.',
+      attribution: 'Head of Trust, Late-stage SaaS',
+      stats: [
+        { value: '4.9/5', label: 'Deal desk satisfaction' },
+        { value: '−62%', label: 'Security review churn' },
+        { value: '100%', label: 'Traceability on answers' },
+      ],
+      takeaway:
+        'Hybrid retrieval, signed corpora, human escalations — packaged as reusable components so every product line inherits the posture.',
+      ctaLabel: 'See approach',
+      ctaPath: '/services',
+    },
+  ] as CaseStudyItem[],
 }
 
 export const servicesContent = [
@@ -107,7 +233,7 @@ export const servicesContent = [
 export const aboutContent = {
   title: 'About Us',
   introduction:
-    'TensorGrid is an AI product engineering company focused on designing real-world intelligence systems for ambitious teams.',
+    'TensorGrids is an AI product engineering company focused on designing real-world intelligence systems for ambitious teams.',
   visionTitle: 'Vision',
   vision:
     'To make intelligent systems accessible, trustworthy, and impactful across every industry.',
@@ -181,9 +307,14 @@ export const faqContent = [
 ]
 
 export const pageHeadings = {
-  homeWhatWeDo: 'What We Do',
-  homeCoreServices: 'Core Services',
-  homeWhyChooseUs: 'Why Choose Us',
+  homePartners: 'Trusted by global teams',
+  homeMetrics: 'Proof in numbers',
+  homeProcess: 'Delivery model',
+  homeIndustries: 'Industries',
+  homeCaseStudies: 'Proof in production',
+  homeWhatWeDo: 'Capabilities at a glance',
+  homeCoreServices: 'Solution accelerators',
+  homeWhyChooseUs: 'Operating principles',
   servicesTitle: 'Services',
   servicesSubtitle:
     'Comprehensive AI, robotics, and product engineering services tailored to your business goals.',

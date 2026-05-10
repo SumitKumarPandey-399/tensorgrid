@@ -1,70 +1,85 @@
 import { Link } from 'react-router-dom'
 
-type HeroProps = {
-  title: string
+export type HeroProps = {
+  credibilityBadge: string
+  kickerPrimary: string
+  kickerSecondary: string
+  titleLead: string
+  titleAccent: string
+  titleTrail: string
   subtitle: string
   ctaPrimary: string
   ctaSecondary: string
 }
 
-export function Hero({ title, subtitle, ctaPrimary, ctaSecondary }: HeroProps) {
+export function Hero({
+  credibilityBadge,
+  kickerPrimary,
+  kickerSecondary,
+  titleLead,
+  titleAccent,
+  titleTrail,
+  subtitle,
+  ctaPrimary,
+  ctaSecondary,
+}: HeroProps) {
   return (
-    <section className="relative py-20 sm:py-24">
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-        <div className="text-center lg:text-left">
-          <span className="inline-flex rounded-full border border-cyan-400/35 bg-cyan-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200">
-            AI Native Product Studio
-          </span>
-          <h1 className="mt-6 max-w-4xl text-4xl font-bold tracking-tight text-slate-100 sm:text-5xl lg:text-6xl">
-            {title}
+    <section className="relative overflow-hidden border-b border-slate-200/80 bg-[linear-gradient(180deg,#dbeefe_0%,#eef6ff_45%,#f8fafc_100%)] pt-8 sm:pt-12">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:linear-gradient(rgba(148,163,184,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.12)_1px,transparent_1px)] [background-size:48px_48px]"
+      />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[380px] bg-[radial-gradient(ellipse_75%_60%_at_50%_0%,rgba(255,255,255,0.9),transparent_65%)]" />
+      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-4 pb-16 sm:px-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:gap-12 lg:px-8 lg:pb-20">
+        <div>
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start lg:justify-start">
+            <span className="inline-flex items-center rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-800 shadow-sm ring-1 ring-slate-200/90 sm:text-[11px]">
+              {credibilityBadge}
+            </span>
+          </div>
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-2 sm:justify-start">
+            <span className="rounded-full bg-sky-100/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-sky-900 ring-1 ring-sky-200/80 sm:text-[11px]">
+              {kickerPrimary}
+            </span>
+            <span className="rounded-full bg-sky-100/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-sky-900 ring-1 ring-sky-200/80 sm:text-[11px]">
+              {kickerSecondary}
+            </span>
+          </div>
+          <h1 className="font-display mt-7 text-center text-[2rem] font-bold leading-[1.12] tracking-tight text-slate-900 sm:text-left sm:text-[2.75rem] lg:text-[3.15rem]">
+            {titleLead}
+            <span className="italic text-blue-600">{titleAccent}</span>
+            {titleTrail}
           </h1>
-          <p className="mt-6 max-w-2xl text-base text-slate-300 sm:text-lg">{subtitle}</p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
+          <p className="mt-6 max-w-2xl text-center text-base leading-relaxed text-slate-600 sm:text-left sm:text-lg">{subtitle}</p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:justify-start sm:gap-4">
             <Link
               to="/contact"
-              className="rounded-xl bg-gradient-to-r from-blue-500 via-cyan-400 to-indigo-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-glow transition hover:opacity-95"
+              className="inline-flex items-center justify-center rounded-full bg-blue-600 px-7 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-blue-700"
             >
               {ctaPrimary}
             </Link>
             <Link
               to="/services"
-              className="rounded-xl border border-slate-700 bg-slate-900/80 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-400/45 hover:bg-slate-900"
+              className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-7 py-3 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-sky-400 hover:bg-sky-50"
             >
               {ctaSecondary}
             </Link>
           </div>
         </div>
-        <div className="glass-panel relative overflow-hidden rounded-3xl p-6 sm:p-8">
-          <div className="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-cyan-400/25 blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 h-44 w-44 rounded-full bg-indigo-500/25 blur-3xl" />
-          <div className="relative grid gap-4">
-            <div className="rounded-2xl border border-slate-700/80 bg-slate-900/75 p-4">
-              <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">Live intelligence</p>
-              <p className="mt-2 text-2xl font-semibold text-slate-100">98.4%</p>
-              <p className="text-sm text-slate-300">Model confidence across active pipelines</p>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl border border-slate-700/80 bg-slate-900/75 p-4">
-                <p className="text-xs text-slate-300">Agents Deployed</p>
-                <p className="mt-1 text-xl font-semibold text-cyan-300">24</p>
-              </div>
-              <div className="rounded-2xl border border-slate-700/80 bg-slate-900/75 p-4">
-                <p className="text-xs text-slate-300">Latency</p>
-                <p className="mt-1 text-xl font-semibold text-blue-300">118ms</p>
-              </div>
-            </div>
-            <svg viewBox="0 0 400 120" className="mt-1 h-24 w-full">
-              <defs>
-                <linearGradient id="hero-line" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#22d3ee" />
-                  <stop offset="50%" stopColor="#60a5fa" />
-                  <stop offset="100%" stopColor="#6366f1" />
-                </linearGradient>
-              </defs>
-              <path d="M0 80 C40 50, 70 90, 110 62 C145 36, 175 72, 210 56 C245 40, 270 64, 300 50 C330 35, 360 46, 400 24" fill="none" stroke="url(#hero-line)" strokeWidth="3" strokeLinecap="round" />
-              <path d="M0 112 L400 112" stroke="#334155" strokeWidth="1" />
-            </svg>
+
+        <div className="relative rounded-2xl border border-slate-200 bg-white/95 p-6 shadow-md sm:p-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-800">Trusted by teams shipping fast</p>
+          <div className="mt-5 grid grid-cols-2 gap-3 text-sm text-slate-700 sm:grid-cols-3">
+            <span className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-center">Manufacturing</span>
+            <span className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-center">Energy</span>
+            <span className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-center">EPC</span>
+            <span className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-center">SaaS</span>
+            <span className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-center">Logistics</span>
+            <span className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-center">Automation</span>
           </div>
+          <p className="mt-5 text-sm leading-relaxed text-slate-600">
+            We build AI systems with clear ownership, production observability, and measurable business outcomes.
+          </p>
         </div>
       </div>
     </section>

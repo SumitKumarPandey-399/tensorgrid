@@ -45,7 +45,7 @@ export const siteContent = {
   contact: {
     email: 'hello@tensorgrid.ai',
     phone: '+91 99887 66554',
-    location: 'Bengaluru, India',
+    location: 'Lucknow, India',
   },
   navLinks: [
     { label: 'Home', path: '/' },
